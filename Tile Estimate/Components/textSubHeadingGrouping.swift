@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct textSubHeadingGrouping: View {
+    let text: String
+    
+    init(text: String) {
+        self.text = text
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(text)
+            .font(.system(size: 13, weight: .regular))
+            .foregroundColor(Color(hex: "3C3C43", transparency: 0.6))
+            .textCase(.uppercase)
     }
 }
 
 #Preview {
-    textSubHeadingGrouping()
+    textSubHeadingGrouping(text: "area to cover")
 }

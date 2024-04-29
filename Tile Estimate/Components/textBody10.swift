@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct textBody10: View {
+    let text: String
+    
+    init(text: String) {
+        self.text = text
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(text)
+          .font(.custom("Inter Bold", size: 12))
+          .fontWeight(.bold)
+          .foregroundColor(Color(hex:"4a382e", transparency: 1.0))
     }
 }
 
 #Preview {
-    textBody10()
+    textBody10(text: "Tiles Needed")
 }

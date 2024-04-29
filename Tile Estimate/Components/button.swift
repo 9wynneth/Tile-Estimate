@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct btnSatuan: View {
+struct button: View {
     let icon: String
     let text: String
     let font: Int
@@ -17,9 +17,10 @@ struct btnSatuan: View {
     let bgTransparency: Double
     let fontColor: String
     let fontTransparency: Double
+    let cornerRadius: CGFloat
     let action: (() -> Void)?
 
-    init(icon: String, text: String, width: Int, height: Int, font: Int, bgColor: String, bgTransparency: Double, fontColor: String, fontTransparency: Double, action: (() -> Void)? = nil) {
+    init(icon: String, text: String, width: Int, height: Int, font: Int, bgColor: String, bgTransparency: Double, fontColor: String, fontTransparency: Double, cornerRadius: CGFloat, action: (() -> Void)? = nil) {
         self.icon = icon
         self.text = text
         self.width = width
@@ -29,6 +30,7 @@ struct btnSatuan: View {
         self.bgTransparency = bgTransparency
         self.fontColor = fontColor
         self.fontTransparency = fontTransparency
+        self.cornerRadius = cornerRadius
         self.action = action
     }
     
@@ -55,12 +57,14 @@ struct btnSatuan: View {
         }
         .buttonStyle(PlainButtonStyle())
         .frame(width: CGFloat(width), height: CGFloat(height))
-        .background(Color(hex: "#c1ada0", transparency: 1))
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .background(Color(hex: bgColor, transparency: bgTransparency))
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+//        LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .topLeading, endPoint: .bottomTrailing) // Example gradient, replace with your desired gradient
+
 
     }
 }
 
 #Preview {
-    btnSatuan(icon: "chevron.up.chevron.down", text:"m", width: 70, height:22, font: 12, bgColor: "#c1ada0", bgTransparency: 1.0 , fontColor:"3C3C43", fontTransparency: 0.6)
+    button(icon: "chevron.up.chevron.down", text:"m", width: 57, height:23, font: 12, bgColor: "#c1ada0", bgTransparency: 1.0 , fontColor:"3C3C43", fontTransparency: 0.6, cornerRadius: 20)
 }

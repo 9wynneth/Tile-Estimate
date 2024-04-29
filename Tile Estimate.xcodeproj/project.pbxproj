@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E55D5E82BDE75A500023585 /* coba.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D5E72BDE75A500023585 /* coba.swift */; };
+		1E55D5EA2BDF2A7600023585 /* dropdownbtnList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D5E92BDF2A7600023585 /* dropdownbtnList.swift */; };
+		1EBCC4C42BDE61F6000F8589 /* sheetCalculateArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCC4C32BDE61F6000F8589 /* sheetCalculateArea.swift */; };
 		1EF34C6D2BDB35BB00E32C0A /* Tile_EstimateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C6C2BDB35BB00E32C0A /* Tile_EstimateApp.swift */; };
 		1EF34C6F2BDB35BB00E32C0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C6E2BDB35BB00E32C0A /* ContentView.swift */; };
 		1EF34C712BDB35BB00E32C0A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C702BDB35BB00E32C0A /* Item.swift */; };
@@ -15,6 +18,22 @@
 		1EF34C822BDB35BD00E32C0A /* Tile_EstimateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C812BDB35BD00E32C0A /* Tile_EstimateTests.swift */; };
 		1EF34C8C2BDB35BD00E32C0A /* Tile_EstimateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C8B2BDB35BD00E32C0A /* Tile_EstimateUITests.swift */; };
 		1EF34C8E2BDB35BD00E32C0A /* Tile_EstimateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C8D2BDB35BD00E32C0A /* Tile_EstimateUITestsLaunchTests.swift */; };
+		1EF34C9F2BDB382400E32C0A /* trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C9E2BDB382400E32C0A /* trash.swift */; };
+		1EF34CA12BDB4E1B00E32C0A /* splashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CA02BDB4E1B00E32C0A /* splashScreenView.swift */; };
+		1EF34CA32BDB9A5D00E32C0A /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CA22BDB9A5D00E32C0A /* button.swift */; };
+		1EF34CA72BDCA08A00E32C0A /* textfieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CA62BDCA08A00E32C0A /* textfieldInput.swift */; };
+		1EF34CA92BDCB84F00E32C0A /* colorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CA82BDCB84F00E32C0A /* colorConverter.swift */; };
+		1EF34CAB2BDCDEC700E32C0A /* textHeadingFitur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CAA2BDCDEC700E32C0A /* textHeadingFitur.swift */; };
+		1EF34CAD2BDCDFFF00E32C0A /* textSubHeadingGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CAC2BDCDFFF00E32C0A /* textSubHeadingGrouping.swift */; };
+		1EF34CAF2BDCE0D300E32C0A /* textHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CAE2BDCE0D300E32C0A /* textHeading.swift */; };
+		1EF34CB12BDCE17100E32C0A /* textBody17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CB02BDCE17100E32C0A /* textBody17.swift */; };
+		1EF34CB32BDCE22400E32C0A /* textBody12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CB22BDCE22400E32C0A /* textBody12.swift */; };
+		1EF34CB52BDCE2B300E32C0A /* textBody10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CB42BDCE2B300E32C0A /* textBody10.swift */; };
+		1EF34CB72BDCE91300E32C0A /* pickerDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CB62BDCE91300E32C0A /* pickerDropdown.swift */; };
+		1EF34CB92BDCF02B00E32C0A /* alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CB82BDCF02B00E32C0A /* alert.swift */; };
+		1EF34CBB2BDD2F2E00E32C0A /* card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CBA2BDD2F2E00E32C0A /* card.swift */; };
+		1EF34CC12BDD325B00E32C0A /* QuickCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CC02BDD325B00E32C0A /* QuickCount.swift */; };
+		1EF34CC32BDDF9F500E32C0A /* popupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34CC22BDDF9F500E32C0A /* popupResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E55D5E72BDE75A500023585 /* coba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coba.swift; sourceTree = "<group>"; };
+		1E55D5E92BDF2A7600023585 /* dropdownbtnList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropdownbtnList.swift; sourceTree = "<group>"; };
+		1EBCC4C32BDE61F6000F8589 /* sheetCalculateArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheetCalculateArea.swift; sourceTree = "<group>"; };
 		1EF34C692BDB35BB00E32C0A /* Tile Estimate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tile Estimate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF34C6C2BDB35BB00E32C0A /* Tile_EstimateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile_EstimateApp.swift; sourceTree = "<group>"; };
 		1EF34C6E2BDB35BB00E32C0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +70,22 @@
 		1EF34C872BDB35BD00E32C0A /* Tile EstimateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tile EstimateUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF34C8B2BDB35BD00E32C0A /* Tile_EstimateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile_EstimateUITests.swift; sourceTree = "<group>"; };
 		1EF34C8D2BDB35BD00E32C0A /* Tile_EstimateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile_EstimateUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1EF34C9E2BDB382400E32C0A /* trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trash.swift; sourceTree = "<group>"; };
+		1EF34CA02BDB4E1B00E32C0A /* splashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashScreenView.swift; sourceTree = "<group>"; };
+		1EF34CA22BDB9A5D00E32C0A /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
+		1EF34CA62BDCA08A00E32C0A /* textfieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textfieldInput.swift; sourceTree = "<group>"; };
+		1EF34CA82BDCB84F00E32C0A /* colorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorConverter.swift; sourceTree = "<group>"; };
+		1EF34CAA2BDCDEC700E32C0A /* textHeadingFitur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHeadingFitur.swift; sourceTree = "<group>"; };
+		1EF34CAC2BDCDFFF00E32C0A /* textSubHeadingGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textSubHeadingGrouping.swift; sourceTree = "<group>"; };
+		1EF34CAE2BDCE0D300E32C0A /* textHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHeading.swift; sourceTree = "<group>"; };
+		1EF34CB02BDCE17100E32C0A /* textBody17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textBody17.swift; sourceTree = "<group>"; };
+		1EF34CB22BDCE22400E32C0A /* textBody12.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textBody12.swift; sourceTree = "<group>"; };
+		1EF34CB42BDCE2B300E32C0A /* textBody10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textBody10.swift; sourceTree = "<group>"; };
+		1EF34CB62BDCE91300E32C0A /* pickerDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickerDropdown.swift; sourceTree = "<group>"; };
+		1EF34CB82BDCF02B00E32C0A /* alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.swift; sourceTree = "<group>"; };
+		1EF34CBA2BDD2F2E00E32C0A /* card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = card.swift; sourceTree = "<group>"; };
+		1EF34CC02BDD325B00E32C0A /* QuickCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCount.swift; sourceTree = "<group>"; };
+		1EF34CC22BDDF9F500E32C0A /* popupResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +136,9 @@
 		1EF34C6B2BDB35BB00E32C0A /* Tile Estimate */ = {
 			isa = PBXGroup;
 			children = (
+				1EF34C9C2BDB378100E32C0A /* Components */,
+				1EF34C9A2BDB375500E32C0A /* Pages */,
 				1EF34C6C2BDB35BB00E32C0A /* Tile_EstimateApp.swift */,
-				1EF34C6E2BDB35BB00E32C0A /* ContentView.swift */,
 				1EF34C702BDB35BB00E32C0A /* Item.swift */,
 				1EF34C722BDB35BD00E32C0A /* Assets.xcassets */,
 				1EF34C772BDB35BD00E32C0A /* Tile_Estimate.entitlements */,
@@ -132,6 +171,72 @@
 				1EF34C8D2BDB35BD00E32C0A /* Tile_EstimateUITestsLaunchTests.swift */,
 			);
 			path = "Tile EstimateUITests";
+			sourceTree = "<group>";
+		};
+		1EF34C9A2BDB375500E32C0A /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				1EF34CBF2BDD323900E32C0A /* Result */,
+				1EF34CBE2BDD322C00E32C0A /* Calculate With Area */,
+				1EF34CBC2BDD320800E32C0A /* Quick Count */,
+				1EF34C9D2BDB37DD00E32C0A /* Splash Screen */,
+				1EF34C6E2BDB35BB00E32C0A /* ContentView.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		1EF34C9C2BDB378100E32C0A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1EF34CA22BDB9A5D00E32C0A /* button.swift */,
+				1EF34CA62BDCA08A00E32C0A /* textfieldInput.swift */,
+				1EF34CA82BDCB84F00E32C0A /* colorConverter.swift */,
+				1EF34CAA2BDCDEC700E32C0A /* textHeadingFitur.swift */,
+				1EF34CAC2BDCDFFF00E32C0A /* textSubHeadingGrouping.swift */,
+				1EF34CAE2BDCE0D300E32C0A /* textHeading.swift */,
+				1EF34CB02BDCE17100E32C0A /* textBody17.swift */,
+				1EF34CB22BDCE22400E32C0A /* textBody12.swift */,
+				1EF34CB42BDCE2B300E32C0A /* textBody10.swift */,
+				1EF34CB62BDCE91300E32C0A /* pickerDropdown.swift */,
+				1EF34CB82BDCF02B00E32C0A /* alert.swift */,
+				1EF34CBA2BDD2F2E00E32C0A /* card.swift */,
+				1E55D5E72BDE75A500023585 /* coba.swift */,
+				1E55D5E92BDF2A7600023585 /* dropdownbtnList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1EF34C9D2BDB37DD00E32C0A /* Splash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				1EF34C9E2BDB382400E32C0A /* trash.swift */,
+				1EF34CA02BDB4E1B00E32C0A /* splashScreenView.swift */,
+			);
+			path = "Splash Screen";
+			sourceTree = "<group>";
+		};
+		1EF34CBC2BDD320800E32C0A /* Quick Count */ = {
+			isa = PBXGroup;
+			children = (
+				1EF34CC02BDD325B00E32C0A /* QuickCount.swift */,
+			);
+			path = "Quick Count";
+			sourceTree = "<group>";
+		};
+		1EF34CBE2BDD322C00E32C0A /* Calculate With Area */ = {
+			isa = PBXGroup;
+			children = (
+				1EBCC4C32BDE61F6000F8589 /* sheetCalculateArea.swift */,
+			);
+			path = "Calculate With Area";
+			sourceTree = "<group>";
+		};
+		1EF34CBF2BDD323900E32C0A /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				1EF34CC22BDDF9F500E32C0A /* popupResult.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,8 +370,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF34C6F2BDB35BB00E32C0A /* ContentView.swift in Sources */,
+				1EF34CB52BDCE2B300E32C0A /* textBody10.swift in Sources */,
+				1EF34CA12BDB4E1B00E32C0A /* splashScreenView.swift in Sources */,
+				1EF34CBB2BDD2F2E00E32C0A /* card.swift in Sources */,
+				1EF34C9F2BDB382400E32C0A /* trash.swift in Sources */,
+				1EF34CA72BDCA08A00E32C0A /* textfieldInput.swift in Sources */,
 				1EF34C712BDB35BB00E32C0A /* Item.swift in Sources */,
+				1EF34CAD2BDCDFFF00E32C0A /* textSubHeadingGrouping.swift in Sources */,
+				1EF34CB12BDCE17100E32C0A /* textBody17.swift in Sources */,
+				1EF34CB72BDCE91300E32C0A /* pickerDropdown.swift in Sources */,
+				1EF34CAB2BDCDEC700E32C0A /* textHeadingFitur.swift in Sources */,
+				1EF34CA32BDB9A5D00E32C0A /* button.swift in Sources */,
+				1EF34CC32BDDF9F500E32C0A /* popupResult.swift in Sources */,
+				1EF34CAF2BDCE0D300E32C0A /* textHeading.swift in Sources */,
+				1EF34CA92BDCB84F00E32C0A /* colorConverter.swift in Sources */,
+				1E55D5E82BDE75A500023585 /* coba.swift in Sources */,
 				1EF34C6D2BDB35BB00E32C0A /* Tile_EstimateApp.swift in Sources */,
+				1EF34CB92BDCF02B00E32C0A /* alert.swift in Sources */,
+				1EF34CB32BDCE22400E32C0A /* textBody12.swift in Sources */,
+				1E55D5EA2BDF2A7600023585 /* dropdownbtnList.swift in Sources */,
+				1EF34CC12BDD325B00E32C0A /* QuickCount.swift in Sources */,
+				1EBCC4C42BDE61F6000F8589 /* sheetCalculateArea.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +555,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tile Estimate/Preview Content\"";
+				DEVELOPMENT_TEAM = V82QRJ28YB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tile Estimate/Info.plist";
@@ -461,6 +586,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tile Estimate/Preview Content\"";
+				DEVELOPMENT_TEAM = V82QRJ28YB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tile Estimate/Info.plist";

@@ -1,18 +1,32 @@
+////
+////  dropdownbtnList.swift
+////  Tile Estimate
+////
+////  Created by Gwynneth Isviandhy on 29/04/24.
+////
 //
-//  dropdownbtnList.swift
-//  Tile Estimate
+//import SwiftUI
 //
-//  Created by Gwynneth Isviandhy on 29/04/24.
+//struct dropdownbtnList: View {
+//    let options: [String]
+//    let selection: Binding<String?>
+//    let label: String
+//    
+//    var body: some View {
+//        Menu {
+//            ForEach(options, id: \.self) { option in
+//                Button(action: {
+//                    selection.wrappedValue = option
+//                }) {
+//                    Text(String(describing: option))
+//                }
+//            }
+//        } label: {
+//            Text(label)
+//        }
+//    }
+//}
 //
-
-import SwiftUI
-
-struct dropdownbtnList: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    dropdownbtnList()
-}
+//#Preview {
+//    dropdownbtnList(options: dropdownOptions, selection: selectedOption, label: "Dropdown")
+//}
