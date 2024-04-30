@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct CustomAlert: View {
+struct CustomAlert <Content: View>: View {
+ 
     @Environment(\.colorScheme) var colorScheme
 
     let title: String
@@ -40,12 +41,11 @@ struct CustomAlert: View {
     var body: some View {
         HStack {
             VStack(spacing: 0) {
-                Text(title)
-                    .font(.system(size: 16, weight: .semibold, design: .default))
+                textHeading(text: title)
                     .padding(.top)
                     .padding(.bottom, 8)
 
-                Text(description)
+                textBody12(text: description)
                     .font(.system(size: 12, weight: .light, design: .default))
                     .multilineTextAlignment(.center)
                     .padding([.bottom, .trailing, .leading])
@@ -59,6 +59,7 @@ struct CustomAlert: View {
                         Button { cancelAction() } label: {
                             Text(cancelActionTitle)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                                .foregroundColor(.red)
                         }
                     }
 
@@ -75,7 +76,7 @@ struct CustomAlert: View {
                 }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
             }
             .frame(minWidth: 0, maxWidth: 400, alignment: .center)
-            .background(.ultraThickMaterial)
+            .background(Color(hex: "e0c9bb", transparency: 1.0))
             .cornerRadius(10)
             .padding([.trailing, .leading], 50)
         }
@@ -89,6 +90,22 @@ struct CustomAlert: View {
     }
 }
 
-//#Preview {
-//    customAlertCoba(a)
-//}
+#Preview {
+    CustomAlert(
+        title: "Alert title",
+        description: "Description here",
+        cancelAction: {
+            // Cancel action here
+
+        },
+        cancelActionTitle: "Cancel",
+        primaryAction: {
+            // Primary action here
+
+        },
+        primaryActionTitle: "Clear"
+//                    ,
+//                    customContent: Text("Custom content here")
+//                        .padding([.trailing, .leading, .bottom])
+     
+    ).cornerRadius(14)}

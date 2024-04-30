@@ -9,15 +9,17 @@ import SwiftUI
 
 struct textfieldInput: View {
     
-    @State private var text = ""
+    @Binding var text: String
     let placeholder: String
     let font: CGFloat
     let width: CGFloat
     let height: CGFloat
     let cornerRadius: CGFloat
     let satuan: String
+
     
-    init(placeholder: String, font: CGFloat, width: CGFloat, height: CGFloat, cornerRadius: CGFloat, satuan: String) {
+    init(text: Binding<String>, placeholder: String, font: CGFloat, width: CGFloat, height: CGFloat, cornerRadius: CGFloat, satuan: String) {
+        self._text = text
         self.placeholder = placeholder
         self.font = font
         self.width = width
@@ -61,8 +63,8 @@ struct textfieldInput: View {
     }
 }
 
-#Preview {
-    textfieldInput(placeholder: "blabla", font: 12, width: 70, height: 32, cornerRadius: 8, satuan: "")
-}
+//#Preview {
+//    textfieldInput(text: $bo , placeholder: "blabla", font: 12, width: 70, height: 32, cornerRadius: 8, satuan: "")
+//}
 
 

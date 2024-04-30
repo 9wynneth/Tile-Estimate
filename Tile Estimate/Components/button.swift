@@ -38,7 +38,7 @@ struct button: View {
         Button(action: {
             action?()
         }) {
-            if icon.isEmpty { // Check if icon is empty
+            if icon.isEmpty { 
                         Text(text)
                             .font(.system(size: CGFloat(font), weight: .medium))
                             .foregroundColor(Color(hex: fontColor, transparency: fontTransparency))

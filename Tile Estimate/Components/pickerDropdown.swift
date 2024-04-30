@@ -10,7 +10,7 @@ import SwiftUI
 struct pickerDropdown: View {
     let icon: String
     let items: [String]
-    @State private var selectedIndex: Int = 0 // Changed to track index
+    @State private var selectedIndex: Int = 0 
     let font: CGFloat
     let width: CGFloat
     let height: CGFloat

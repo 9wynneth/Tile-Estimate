@@ -16,7 +16,6 @@ struct textBody12: View {
     
     var body: some View {
         Text(text)
-            .textCase(.uppercase)
           .font(.custom("Inter Bold", size: 12))
           .fontWeight(.bold)
           .foregroundColor(Color(hex:"4a382e", transparency: 1.0))

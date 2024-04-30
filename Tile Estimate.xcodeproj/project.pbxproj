@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E55D5E82BDE75A500023585 /* coba.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D5E72BDE75A500023585 /* coba.swift */; };
 		1E55D5EA2BDF2A7600023585 /* dropdownbtnList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D5E92BDF2A7600023585 /* dropdownbtnList.swift */; };
+		1E55D5EC2BDFDA1E00023585 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D5EB2BDFDA1E00023585 /* CustomAlert.swift */; };
 		1EBCC4C42BDE61F6000F8589 /* sheetCalculateArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCC4C32BDE61F6000F8589 /* sheetCalculateArea.swift */; };
 		1EF34C6D2BDB35BB00E32C0A /* Tile_EstimateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C6C2BDB35BB00E32C0A /* Tile_EstimateApp.swift */; };
 		1EF34C6F2BDB35BB00E32C0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF34C6E2BDB35BB00E32C0A /* ContentView.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		1E55D5E72BDE75A500023585 /* coba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coba.swift; sourceTree = "<group>"; };
 		1E55D5E92BDF2A7600023585 /* dropdownbtnList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropdownbtnList.swift; sourceTree = "<group>"; };
+		1E55D5EB2BDFDA1E00023585 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		1EBCC4C32BDE61F6000F8589 /* sheetCalculateArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheetCalculateArea.swift; sourceTree = "<group>"; };
 		1EF34C692BDB35BB00E32C0A /* Tile Estimate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tile Estimate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF34C6C2BDB35BB00E32C0A /* Tile_EstimateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile_EstimateApp.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				1EF34CBA2BDD2F2E00E32C0A /* card.swift */,
 				1E55D5E72BDE75A500023585 /* coba.swift */,
 				1E55D5E92BDF2A7600023585 /* dropdownbtnList.swift */,
+				1E55D5EB2BDFDA1E00023585 /* CustomAlert.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				1EF34CB92BDCF02B00E32C0A /* alert.swift in Sources */,
 				1EF34CB32BDCE22400E32C0A /* textBody12.swift in Sources */,
 				1E55D5EA2BDF2A7600023585 /* dropdownbtnList.swift in Sources */,
+				1E55D5EC2BDFDA1E00023585 /* CustomAlert.swift in Sources */,
 				1EF34CC12BDD325B00E32C0A /* QuickCount.swift in Sources */,
 				1EBCC4C42BDE61F6000F8589 /* sheetCalculateArea.swift in Sources */,
 			);
