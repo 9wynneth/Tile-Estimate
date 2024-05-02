@@ -29,7 +29,7 @@ struct QuickCount: View {
                             popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                                 .edgesIgnoringSafeArea(.all)
-                                .padding(.top, 50) // Add padding to push down the popup
+                                .padding(.top, 100)
                         }
                     }
                     .zIndex(1)
@@ -49,7 +49,7 @@ struct QuickCount: View {
                             HStack {
                                 textBody12(text: "area to cover")
                                 Spacer()
-                                Text("Already knows the area of the room?")
+                                Text("Already know the area of the room?")
                                     .font(.custom("Inter Bold", size: 11))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color(hex:"946F5A", transparency: 1.0))

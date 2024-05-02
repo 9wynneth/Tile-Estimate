@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct popupResult: View {
     var areaLength: String
@@ -59,7 +60,7 @@ struct popupResult: View {
                         textBody12(text: "TILE AREA: \(areaRoom) m2").fontWeight(.black)
                         textBody12(text: "TILE SIZE: \(tileLength)x\(tileWidth) cm").fontWeight(.black)
                     }
-                    textSubHeadingGrouping(text: "if with wastage").padding(.top,8).padding(.trailing,110)
+                    textSubHeadingGrouping(text: "if with \(wastage)% wastage").padding(.top,8).padding(.leading,-100)
                     HStack(spacing:20) {
                         card(result: "\(tilesNeeded)", label: "Tiles Needed", width: 90, height: 75, cornerRadius: 15)
                         card(result: "\(boxesNeeded)", label: "Box Needed", width: 90, height: 75, cornerRadius: 15)
@@ -67,7 +68,7 @@ struct popupResult: View {
                     HStack {
                         card(result: "\(totalCost)", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
                     }
-                    textSubHeadingGrouping(text: "if not with wastage").padding(.top,8).padding(.trailing,80)
+                    textSubHeadingGrouping(text: "if not with wastage").padding(.top,8).padding(.leading,-100)
                     HStack(spacing:20) {
                         card(result: "\(tilesNeededNo)", label: "Tiles Needed", width: 90, height: 75, cornerRadius: 15)
                         card(result: "\(boxesNeededNo)", label: "Box Needed", width: 90, height: 75, cornerRadius: 15)
@@ -77,6 +78,9 @@ struct popupResult: View {
                     }
                     HStack {
                         button(icon: "square.and.arrow.up", text: "Share", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
+                        {
+                            shareButtonClicked(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesNeeded: tilesNeeded, tilesNeededNo: tilesNeededNo, boxesNeeded: boxesNeeded, boxesNeededNo: boxesNeededNo, totalCost: totalCost, totalCostNo: totalCostNo, wastage: wastage)
+                        }
                         button(icon: "square.and.arrow.down", text: "Save Image", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
                     }
                     Spacer()
@@ -117,6 +121,35 @@ func calculateTotalCost(boxesNeeded: Int, pricePerBox: Double) -> Int {
     let totalCost = boxesNeeded * Int(pricePerBox)
     return totalCost
 }
+
+func shareButtonClicked(areaLength: String, areaWidth: String, tileLength: String, tileWidth: String, tilesNeeded: Int, tilesNeededNo: Int, boxesNeeded: Int, boxesNeededNo: Int, totalCost: Int, totalCostNo: Int, wastage: String) {
+    let textToShare = """
+    Area Length = \(areaLength) meter
+    Area Width = \(areaWidth) meter
+
+    Area to be cover in m² = \(Double(areaLength)! * Double(areaWidth)!) m²
+
+    Tile Length = \(tileLength) cm
+    Tile Width = \(tileWidth) cm
+
+    Per box price = \(totalCost)
+
+    if with \(wastage)% wastage
+    Total tiles will use = \(tilesNeeded) Tiles
+    Total boxes will use = \(boxesNeeded) Box
+    Cost estimated = \(totalCost)
+
+    if not with wastage
+    Total tiles will use = \(tilesNeededNo) Tiles
+    Total boxes will use = \(boxesNeededNo) Box
+    Cost estimated = \(totalCostNo)
+    """
+    
+    let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+    UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
+}
+
+
 
 #Preview {
     popupResult(areaLength: "300", areaWidth: "300", tileLength: "40", tileWidth: "40", tilesPerBox: "6", pricePerBox: "60000", wastage: "5")
