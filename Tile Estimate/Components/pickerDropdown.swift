@@ -19,8 +19,10 @@ struct pickerDropdown: View {
     let fontColor: String
     let fontTransparency: Double
     let cornerRadius: CGFloat
+    @Binding var transfer : String
+
     
-    init(icon: String, items: [String], width: CGFloat, height: CGFloat, font: CGFloat, bgColor: String, bgTransparency: Double, fontColor: String, fontTransparency: Double, cornerRadius: CGFloat) {
+    init(icon: String, items: [String], width: CGFloat, height: CGFloat, font: CGFloat, bgColor: String, bgTransparency: Double, fontColor: String, fontTransparency: Double, cornerRadius: CGFloat, transfer:Binding<String>) {
         self.icon = icon
         self.items = items
         self.width = width
@@ -31,6 +33,7 @@ struct pickerDropdown: View {
         self.fontColor = fontColor
         self.fontTransparency = fontTransparency
         self.cornerRadius = cornerRadius
+        self._transfer = transfer
     }
     
     var body: some View {
@@ -63,32 +66,45 @@ struct pickerDropdown: View {
         .frame(alignment: .center)
     }
     
-    private var selectedAbbreviation: String {
+    var selectedAbbreviation: String {
         let selectedOption = items[selectedIndex]
-        // Logic to get abbreviation from full name
+        
         switch selectedOption {
             case "meter":
+                transfer = "m"
                 return "m"
             case "centimeter":
+                transfer = "cm"
                 return "cm"
             case "feet":
+                transfer = "ft"
                 return "ft"
             case "inch":
+                transfer = "in"
                 return "in"
             case "Rupiah":
+                transfer = "IDR"
                 return "IDR"
             case "US Dollar":
+                transfer = "USD"
                 return "USD"
             case "Singaporean Dollar":
+                transfer = "SGD"
                 return "SGD"
             case "Euro":
+                transfer = "EUR"
                 return "EUR"
             default:
+                transfer = selectedOption
                 return selectedOption
         }
     }
+
+    
+    
+    
   }
 
-#Preview {
-    pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","c"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
-}
+//#Preview {
+//    pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","c"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, tr)
+//}

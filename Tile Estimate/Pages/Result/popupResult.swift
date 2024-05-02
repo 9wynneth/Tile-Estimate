@@ -16,6 +16,9 @@ struct popupResult: View {
     var tilesPerBox: String
     var pricePerBox: String
     var wastage: String
+    var areaUnitIndex: Int
+    var selectedAbbreviation: String
+
     
     var body: some View {
         VStack {
@@ -54,10 +57,17 @@ struct popupResult: View {
                     let totalCostNo = calculateTotalCost(boxesNeeded: boxesNeededNo, pricePerBox: Double(pricePerBox) ?? 0)
                     
                     
-                    
+//                    let areaLengthInInches = convertToInches(value: Double(areaLength) ?? 0, unit: selectedAreaUnit)
+//                    let areaWidthInInches = convertToInches(value: Double(areaWidth) ?? 0, unit: selectedAreaUnit)
+//
+//                    let tileLengthInInches = convertToInches(value: Double(tileLength) ?? 0, unit: selectedTileUnit)
+//                    let tileWidthInInches = convertToInches(value: Double(tileWidth) ?? 0, unit: selectedTileUnit)
+
+
+
                     textBody17(text: "RESULT:").padding(.bottom,4)
                     HStack(spacing:18) {
-                        textBody12(text: "TILE AREA: \(areaRoom) m2").fontWeight(.black)
+                        textBody12(text: "TILE AREA: \(areaRoom) \(selectedAbbreviation)").fontWeight(.black)
                         textBody12(text: "TILE SIZE: \(tileLength)x\(tileWidth) cm").fontWeight(.black)
                     }
                     textSubHeadingGrouping(text: "if with \(wastage)% wastage").padding(.top,8).padding(.leading,-100)
@@ -95,6 +105,22 @@ struct popupResult: View {
 
     }
 }
+
+private func convertToInches(value: Double, unit: String) -> Double {
+    switch unit {
+    case "meter":
+        return value * 39.3701
+    case "feet":
+        return value * 12.0
+    case "centimeter":
+        return value * 0.393701
+    case "inch":
+        return value
+    default:
+        return 0.0
+    }
+}
+
 
 func calculateTileArea(length: Double, width: Double) -> Double {
     return length * width
@@ -151,6 +177,6 @@ func shareButtonClicked(areaLength: String, areaWidth: String, tileLength: Strin
 
 
 
-#Preview {
-    popupResult(areaLength: "300", areaWidth: "300", tileLength: "40", tileWidth: "40", tilesPerBox: "6", pricePerBox: "60000", wastage: "5")
-}
+//#Preview {
+//    popupResult(areaLength: "300", areaWidth: "300", tileLength: "40", tileWidth: "40", tilesPerBox: "6", pricePerBox: "60000", wastage: "5")
+//}

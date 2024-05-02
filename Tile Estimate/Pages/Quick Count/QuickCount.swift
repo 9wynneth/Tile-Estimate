@@ -16,6 +16,15 @@ struct QuickCount: View {
     @State private var pricePerBox = ""
     @State private var wastage = ""
     @State private var showPopup = false
+    @State private var areaUnitIndex = 0 
+    @State private var tileUnitIndex = 0 
+    @State private var selectedAbre=""
+
+//    // Inside your QuickCount view...
+//    pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, selectedIndex: $areaUnitIndex)
+//
+//    pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, selectedIndex: $tileUnitIndex)
+
 
 
     
@@ -26,7 +35,7 @@ struct QuickCount: View {
                     Spacer()
                     VStack {
                         if showPopup {
-                            popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage)
+                            popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage, areaUnitIndex: areaUnitIndex, selectedAbbreviation: selectedAbre)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                                 .edgesIgnoringSafeArea(.all)
                                 .padding(.top, 100)
@@ -47,7 +56,7 @@ struct QuickCount: View {
                         
                         VStack {
                             HStack {
-                                textBody12(text: "area to cover")
+                                textSubHeadingGrouping(text: "area to cover")
                                 Spacer()
                                 Text("Already know the area of the room?")
                                     .font(.custom("Inter Bold", size: 11))
@@ -66,7 +75,7 @@ struct QuickCount: View {
                                     HStack {
                                         textBody17(text: "Shape")
                                         Spacer()
-                                        pickerDropdown(icon: "chevron.up.chevron.down", items: ["Rectangle", "Circle","Triangle"], width: 140, height: 23, font: 12, bgColor: "946F5A", bgTransparency: 0.1, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+                                        pickerDropdown(icon: "chevron.up.chevron.down", items: ["Rectangle", "Circle","Triangle"], width: 140, height: 23, font: 12, bgColor: "946F5A", bgTransparency: 0.1, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbre)
                                     }
                                     .padding(.horizontal,45).padding(.top,12)
                                     
@@ -85,7 +94,7 @@ struct QuickCount: View {
                                         textfieldInput(text: $areaLength, placeholder: "3", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                             .keyboardType(.numberPad)
                                         
-                                        pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+                                        pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbre)
                                     }
                                     .padding(.horizontal,45)
                                 }
@@ -102,7 +111,7 @@ struct QuickCount: View {
                                         
                                         textfieldInput(text:$areaWidth, placeholder: "3", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                             .keyboardType(.numberPad)
-                                        pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+//                                        pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, selectedIndex: areaUnitIndex)
                                         
                                     }
                                     .padding(.horizontal,45)
@@ -128,7 +137,7 @@ struct QuickCount: View {
                                             textfieldInput(text:$tileLength, placeholder: "40", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                                 .keyboardType(.numberPad)
                                             
-                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+//                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
                                         }
                                         .padding(.horizontal,45).padding(.top,12)
                                         
@@ -147,7 +156,7 @@ struct QuickCount: View {
                                             textfieldInput(text:$tileWidth ,placeholder: "40", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                                 .keyboardType(.numberPad)
                                             
-                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+//                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
                                         }
                                         .padding(.horizontal,45)
                                     }
@@ -183,7 +192,7 @@ struct QuickCount: View {
                                                 textBody17(text: "Price")
                                                 Spacer()
                                                 
-                                                pickerDropdown(icon: "chevron.up.chevron.down", items: ["Rupiah", "Euro","US Dollar", "Singaporean Dollar"], width: 60, height: 23, font: 10, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+//                                                pickerDropdown(icon: "chevron.up.chevron.down", items: ["Rupiah", "Euro","US Dollar", "Singaporean Dollar"], width: 60, height: 23, font: 10, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
                                                 
                                                 textfieldInput(text:$pricePerBox, placeholder: "60000", font: 17, width: 127, height: 32, cornerRadius: 8, satuan: "")
                                                     .keyboardType(.numberPad)
@@ -207,8 +216,6 @@ struct QuickCount: View {
                                             }
                                             .padding(.horizontal,45)
                                         }
-                                        
-                                        
                                     }.padding(.top,5)
                                         .frame(alignment: .center)
                                     
@@ -217,8 +224,6 @@ struct QuickCount: View {
                                             showPopup.toggle()
                                             
                                         }
-                                        
-                                        
                                         button(icon: "", text: "Clear All", width: 335, height: 49, font: 15, bgColor: "ded4cd", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
                                         
                                     }.padding(.top,32)
