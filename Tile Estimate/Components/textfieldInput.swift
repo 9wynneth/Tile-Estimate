@@ -48,7 +48,8 @@ struct textfieldInput: View {
                     // Handle editing (optional)
                 }
                 .font(.system(size: font))
-                .keyboardType(.numberPad)
+                .keyboardType(.numberPad) // Set keyboard type when satuan is not empty
+
                 .multilineTextAlignment(.trailing)
                 .padding(4)
                 Text(satuan)
