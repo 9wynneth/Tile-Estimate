@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct historyDetail: View {
+    var historyEntry: history
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        // Details view to display the full details of a history entry
+        VStack {
+            Text("Area Length: \(historyEntry.areaLength)")
+            Text("Area Width: \(historyEntry.areaWidth)")
+            // Add other properties as needed
+        }
     }
 }
 
-#Preview {
-    historyDetail()
-}
+//#Preview {
+//    historyDetail()
+//}

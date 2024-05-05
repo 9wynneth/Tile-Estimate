@@ -44,6 +44,7 @@ struct CustomAlert <Content: View>: View {
                 textHeading(text: title)
                     .padding(.top)
                     .padding(.bottom, 8)
+                    .fontWeight(.black)
 
                 textBody12(text: description)
                     .font(.system(size: 12, weight: .light, design: .default))
@@ -71,6 +72,8 @@ struct CustomAlert <Content: View>: View {
                         Button { primaryAction() } label: {
                             Text("**\(primaryActionTitle)**")
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                                .foregroundColor(.blue)
+
                         }
                     }
                 }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
@@ -92,20 +95,21 @@ struct CustomAlert <Content: View>: View {
 
 #Preview {
     CustomAlert(
-        title: "Alert title",
-        description: "Description here",
+        title: "Are you sure?",
+        description: "By clicking 'Clear', all data you have entered will be permanently deleted.",
         cancelAction: {
             // Cancel action here
-
+            
         },
         cancelActionTitle: "Cancel",
         primaryAction: {
             // Primary action here
-
+            
         },
         primaryActionTitle: "Clear"
-//                    ,
-//                    customContent: Text("Custom content here")
-//                        .padding([.trailing, .leading, .bottom])
-     
-    ).cornerRadius(14)}
+//        ,
+//        customContent: Text("")
+//            .padding([.trailing, .leading, .bottom])
+        
+    ).cornerRadius(14)
+}

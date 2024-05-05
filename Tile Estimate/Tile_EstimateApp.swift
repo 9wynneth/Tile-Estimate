@@ -10,6 +10,10 @@ import SwiftData
 
 @main
 struct Tile_EstimateApp: App {
+    @State private var hist = false
+    @State private var isActive = false
+
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,8 +29,13 @@ struct Tile_EstimateApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-        }
+                    if isActive {
+                        ContentView(hist: $hist, isActive: $isActive)
+                            .modelContainer(for: Item.self, inMemory: true)
+                    } else {
+                        splashScreenView(isActive: $isActive)
+                    }
+                }
         .modelContainer(sharedModelContainer)
     }
 }

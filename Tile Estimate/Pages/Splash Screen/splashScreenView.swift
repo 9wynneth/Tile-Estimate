@@ -7,18 +7,20 @@
 import SwiftUI
 
 struct splashScreenView: View {
-    @State var isActive : Bool = false
+    @Binding var isActive: Bool
     @State private var size = 0.8
     @State private var opacity = 0.5
     @State private var logoOpacity = 0.0
     @State private var textOpacity = 0.0
     @State private var animationDone = false
-    
+    @State private var hist = false
+
+
     var body: some View {
         if isActive {
-             QuickCount()
+            ContentView(hist: .constant(false), isActive: $isActive)
         } else {
-            ZStack {  // Centering using ZStack
+            ZStack {  
                 GeometryReader { geometry in
                     VStack {
                         GeometryReader { geometry in
@@ -41,7 +43,7 @@ struct splashScreenView: View {
                                             .lineSpacing(20)
                                             .transition(.move(edge: .leading))
                                             .opacity(textOpacity)
-                                            .animation(.easeInOut(duration: 1.0).delay(0)) // Text animation
+                                            .animation(.easeInOut(duration: 1.0).delay(0))
                                     }
                                     Text("COUNT TILES, PLAN SMARTER")
                                         .font(.custom("Inter Extra Bold", size: 12))
@@ -79,7 +81,7 @@ struct splashScreenView: View {
         }
      }
 }
-
-#Preview {
-    splashScreenView()
-}
+//
+//#Preview {
+//    splashScreenView()
+//}

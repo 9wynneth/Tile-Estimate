@@ -58,35 +58,48 @@ struct pickerDropdown: View {
         let selectedOption = items[selectedIndex]
         
         switch selectedOption {
-        case "meter":
-            transfer = "m"
-            return "m"
-        case "centimeter":
-            transfer = "cm"
-            return "cm"
-        case "feet":
-            transfer = "ft"
-            return "ft"
-        case "inch":
-            transfer = "in"
-            return "in"
-        case "Rupiah":
-            transfer = "IDR"
-            return "IDR"
-        case "US Dollar":
-            transfer = "USD"
-            return "USD"
-        case "Singaporean Dollar":
-            transfer = "SGD"
-            return "SGD"
-        case "Euro":
-            transfer = "EUR"
-            return "EUR"
-        default:
-            transfer = selectedOption
-            return selectedOption
-            
+            case "meter":
+                transfer = "m"
+                return "m"
+            case "centimeter":
+                transfer = "cm"
+                return "cm"
+            case "feet":
+                transfer = "ft"
+                return "ft"
+            case "inch":
+                transfer = "in"
+                return "in"
+            case "Rupiah":
+                transfer = "IDR"
+                return "IDR"
+            case "US Dollar":
+                transfer = "USD"
+                return "USD"
+            case "Singaporean Dollar":
+                transfer = "SGD"
+                return "SGD"
+            case "Euro":
+                transfer = "EUR"
+                return "EUR"
+            case "square meter":
+                transfer = "m2"
+                return "m2"
+            case "square centimeter":
+                transfer = "cm2"
+                return "cm2"
+            case "square feet":
+                transfer = "ft2"
+                return "ft2"
+            case "square inch":
+                transfer = "in2"
+                return "in2"
+                
+            default:
+                transfer = selectedOption
+                return selectedOption
         }
+
     }
     
     

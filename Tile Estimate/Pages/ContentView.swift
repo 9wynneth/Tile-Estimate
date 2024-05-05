@@ -11,15 +11,30 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @Binding var hist: Bool
+    @Binding var isActive: Bool
 
+    
     var body: some View {
-        splashScreenView()
+        TabView {
+            QuickCount()
+                .tabItem {
+                    Label("Quick Count", systemImage: "wand.and.stars.inverse")
+                }
+            
+            historyList(historyManager: HistoryManager())
+                .tabItem {
+                    Label("History", systemImage: "list.clipboard")
+                }
+        }.accentColor(Color(hex: "946F5A", transparency: 1.0))
 
     }
-
+    
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(hist: .constant(true)) // Example binding to hist
+//            .modelContainer(for: Item.self, inMemory: true)
+//    }
+//}

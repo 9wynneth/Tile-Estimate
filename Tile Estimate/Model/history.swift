@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct history: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+struct history {
+    var areaLength: String
+    var areaWidth: String
+    var tileLength: String
+    var tileWidth: String
 }
 
-#Preview {
-    history()
+class HistoryManager: ObservableObject {
+    @Published var historyEntries: [history] = []
+    
+    func addEntry(entry: history) {
+        historyEntries.append(entry)
+    }
+    
+    // Implement delete functionality if needed
 }

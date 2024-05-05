@@ -20,6 +20,9 @@ struct QuickCount: View {
     @State private var tileUnitIndex = 0
     @State private var selectedAbrePrice=""
     @State private var showSheetArea = false
+    @State private var alert = false
+    
+    
     
     @State private var selectedShape = ""
     
@@ -29,28 +32,54 @@ struct QuickCount: View {
     @State private var selectedAbreWidthTile = ""
     
     var body: some View {
+        let historyManager = HistoryManager()
+
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    if showPopup {
-                        popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage, areaUnitIndex: areaUnitIndex, selectedAbbrePrice: $selectedAbrePrice, selectedAbbrevArea: $selectedAbreLengthArea, selectedAbbrevTile: $selectedAbreLengthTile)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .edgesIgnoringSafeArea(.all)
-                            .padding(.top, 40)
+                    if alert {
+                        CustomAlert(
+                            title: "Are you sure?",
+                            description: "By clicking 'Clear', all data you have entered will be permanently deleted.",
+                            cancelAction: {
+                                alert = false
+                            },
+                            cancelActionTitle: "Cancel",
+                            primaryAction: {
+                                areaUnitIndex = 0
+                                tileUnitIndex = 1
+                                areaLength = ""
+                                areaWidth = ""
+                                tileLength = ""
+                                tileWidth = ""
+                                tilesPerBox = ""
+                                pricePerBox = ""
+                                wastage = ""
+                                alert = false
+                                
+                            },
+                            primaryActionTitle: "Clear"
+                        ).cornerRadius(14)
                     }
-                }
-                .zIndex(1)
+
+                }.zIndex(1.0).ignoresSafeArea()
+                VStack {
+                    if showPopup {
+                        popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage, areaUnitIndex: areaUnitIndex, selectedShape: $selectedShape, selectedAbbrePrice: $selectedAbrePrice, selectedAbbrevArea: $selectedAbreLengthArea, selectedAbbrevTile: $selectedAbreLengthTile, showPopup: $showPopup, historyManager: historyManager)
+                            .padding(.top, 90)
+                    }
+                }.zIndex(1.0)
                 NavigationView {
                     VStack(spacing:0) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color(hex: "c1ada0", transparency: 1.0))
-                                .frame(width: .infinity, height: 140)
+                                .frame(width: .infinity, height: 150)
                             
                             textHeadingFitur(text: "Quick Count")
                                 .padding(.top, 65)
-                        }.offset(y:-15)
-                        ScrollView {
+                        }
+                        ScrollView(.vertical) {
                             
                             VStack {
                                 HStack {
@@ -120,7 +149,16 @@ struct QuickCount: View {
                                             .padding(.horizontal, 25)
                                         
                                         HStack {
-                                            textBody17(text: "Width")
+                                            if selectedShape=="Triangle"{
+                                                textBody17(text: "Height")
+                                                
+                                            }
+                                            else {
+                                                textBody17(text: "Width")
+                                                
+                                            }
+                                            
+                                            
                                             Spacer()
                                             
                                             textfieldInput(text:$areaWidth, placeholder: "3", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
@@ -227,7 +265,7 @@ struct QuickCount: View {
                                                     
                                                     pickerDropdown(icon: "chevron.up.chevron.down", items: ["IDR", "EUR","SGD", "USD"], font: 12, width: 65, height: 23, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbrePrice)
                                                     
-                                                    textfieldInput(text:$pricePerBox, placeholder: "60000", font: 17, width: 127, height: 32, cornerRadius: 8, satuan: "")
+                                                    textfieldInput(text:$pricePerBox , placeholder: "60000", font: 17, width: 130, height: 32, cornerRadius: 8, satuan: "/ box")
                                                         .keyboardType(.numberPad)
                                                     
                                                 }
@@ -260,16 +298,7 @@ struct QuickCount: View {
                                                 
                                             }
                                             button(icon: "", text: "Clear All", width: 335, height: 49, font: 15, bgColor: "ded4cd", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20) {
-                                                
-                                                areaUnitIndex = 0
-                                                tileUnitIndex = 1
-                                                areaLength = ""
-                                                areaWidth = ""
-                                                tileLength = ""
-                                                tileWidth = ""
-                                                tilesPerBox = ""
-                                                pricePerBox = ""
-                                                wastage = ""
+                                                alert = true
                                             }
                                             
                                         }
@@ -278,9 +307,12 @@ struct QuickCount: View {
                                     }
                                     Spacer()
                                 }
+                    
                                 Spacer()
+                                    .frame(minHeight: 0, maxHeight: .infinity)
                             }
-                        }
+                        }.modifier(KeyboardAwareModifier())
+
                         
                     }
                     .background(Color(hex: "F2EEEB", transparency: 1.0))
@@ -291,15 +323,44 @@ struct QuickCount: View {
                         showPopup = false
                     }
                     .sheet(isPresented: $showSheetArea) {
-                        sheetCalculateArea().ignoresSafeArea()
+                        sheetCalculateArea(showPopup: $showSheetArea).ignoresSafeArea()
                     }
                     
                 }
+
             }
-        }
+        }.ignoresSafeArea()
     }
 }
 
+struct KeyboardAwareModifier: ViewModifier {
+    @State private var currentHeight: CGFloat = 0
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom, currentHeight)
+            .onAppear(perform: {
+                NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
+                    guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+                        return
+                    }
+                    withAnimation {
+                        self.currentHeight = keyboardFrame.height
+                    }
+                }
+                NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { _ in
+                    withAnimation {
+                        self.currentHeight = 0
+                    }
+                }
+            })
+    }
+}
+
+
+
+
 #Preview {
     QuickCount()
+        .environmentObject(HistoryManager())
 }
