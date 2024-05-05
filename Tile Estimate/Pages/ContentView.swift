@@ -13,6 +13,8 @@ struct ContentView: View {
     @Query private var items: [Item]
     @Binding var hist: Bool
     @Binding var isActive: Bool
+    @StateObject private var historyManager = HistoryManager()
+
 
     
     var body: some View {
@@ -21,12 +23,15 @@ struct ContentView: View {
                 .tabItem {
                     Label("Quick Count", systemImage: "wand.and.stars.inverse")
                 }
+                .environmentObject(HistoryManager())
             
-            historyList(historyManager: HistoryManager())
+            historyList()
+                .environmentObject(historyManager) 
                 .tabItem {
                     Label("History", systemImage: "list.clipboard")
                 }
         }.accentColor(Color(hex: "946F5A", transparency: 1.0))
+        
 
     }
     

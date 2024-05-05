@@ -61,7 +61,6 @@ struct sheetCalculateArea: View {
                         if showResult {
                             
                             popupresultArea(area: area, tileLength2: length, tileWidth2: width2, tilesPerBox2: tilesPerBox2, pricePerBox2: pricePerBox2, wastage2: wastage2, selectedAbbrePrice: $selectedPrice, selectedAbbrevArea: $selectedArea, selectedAbbrevTile: $selectedAbreLength, showResult: $showResult)
-                            
                         }
                     }.zIndex(1.0)
                     
@@ -190,7 +189,6 @@ struct sheetCalculateArea: View {
                                                 
                                                 textfieldInput(text: $pricePerBox2,placeholder: "60000", font: 17, width: 130, height: 32, cornerRadius: 8, satuan: "/ box")
                                                     .keyboardType(.numberPad)
-                                                
                                             }
                                             .padding(.horizontal,45)
                                         }

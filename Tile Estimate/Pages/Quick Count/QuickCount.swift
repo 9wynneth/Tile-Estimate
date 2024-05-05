@@ -23,7 +23,7 @@ struct QuickCount: View {
     @State private var alert = false
     
     
-    
+
     @State private var selectedShape = ""
     
     @State private var selectedAbreLengthArea = ""
@@ -32,7 +32,7 @@ struct QuickCount: View {
     @State private var selectedAbreWidthTile = ""
     
     var body: some View {
-        let historyManager = HistoryManager()
+        @EnvironmentObject var historyManager: HistoryManager // Use environment object instead of passing directly
 
         GeometryReader { geometry in
             ZStack {
@@ -65,7 +65,7 @@ struct QuickCount: View {
                 }.zIndex(1.0).ignoresSafeArea()
                 VStack {
                     if showPopup {
-                        popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage, areaUnitIndex: areaUnitIndex, selectedShape: $selectedShape, selectedAbbrePrice: $selectedAbrePrice, selectedAbbrevArea: $selectedAbreLengthArea, selectedAbbrevTile: $selectedAbreLengthTile, showPopup: $showPopup, historyManager: historyManager)
+                        popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage, areaUnitIndex: areaUnitIndex, selectedShape: $selectedShape, selectedAbbrePrice: $selectedAbrePrice, selectedAbbrevArea: $selectedAbreLengthArea, selectedAbbrevTile: $selectedAbreLengthTile, showPopup: $showPopup, historyManager: _historyManager)
                             .padding(.top, 90)
                     }
                 }.zIndex(1.0)
@@ -292,17 +292,19 @@ struct QuickCount: View {
                                         .padding(.top, 5)
                                         .frame(alignment: .center)
                                         
-                                        VStack(spacing: 8) {
-                                            button(icon: "", text: "Calculate", width: 335, height: 49, font: 15, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20) {
-                                                showPopup.toggle()
-                                                
-                                            }
-                                            button(icon: "", text: "Clear All", width: 335, height: 49, font: 15, bgColor: "ded4cd", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20) {
+                                        HStack() {
+                                            button(icon: "", text: "Clear All", width: 150, height: 49, font: 15, bgColor: "ded4cd", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20) {
                                                 alert = true
                                             }
                                             
+                                            button(icon: "", text: "Calculate", width: 150, height: 49, font: 15, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20) {
+                                                showPopup.toggle()
+                                                
+                                            }
+
+                                            
                                         }
-                                        .padding(.top, 32)
+                                        .padding(.top, 32).padding(.horizontal,25)
                                         
                                     }
                                     Spacer()

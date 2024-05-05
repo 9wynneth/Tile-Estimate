@@ -24,7 +24,7 @@ struct popupResult: View {
     @Binding var selectedAbbrevTile: String
     
     @Binding var showPopup: Bool
-    @ObservedObject var historyManager: HistoryManager
+    @EnvironmentObject var historyManager: HistoryManager // Use environment object
     @State public var hist = false
     
     @Environment(\.colorScheme) var colorScheme
@@ -114,7 +114,7 @@ struct popupResult: View {
                                 card(result: "\(boxesNeeded)", label: "Box Needed", width: 90, height: 75, cornerRadius: 15)
                             }
                             HStack {
-                                card(result: "\(selectedAbbrePrice). \(totalCost)", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
+                                card(result: "\(selectedAbbrePrice). \(formattedCost(totalCost))", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
                             }
                             textSubHeadingGrouping(text: "if not with wastage").padding(.top,8).padding(.leading,-100)
                             HStack(spacing:20) {
@@ -122,21 +122,23 @@ struct popupResult: View {
                                 card(result: "\(boxesNeededNo)", label: "Box Needed", width: 90, height: 75, cornerRadius: 15)
                             }
                             HStack {
-                                card(result: "\(selectedAbbrePrice). \(totalCostNo)", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
+                                card(result: "\(selectedAbbrePrice). \(formattedCost(totalCostNo))", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
                             }
                             HStack {
                                 button(icon: "square.and.arrow.up", text: "Share", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
                                 {
                                     shareButtonClicked(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesNeeded: Int(tilesNeeded), tilesNeededNo: Int(tilesNeededNo), boxesNeeded: boxesNeeded, boxesNeededNo: boxesNeededNo, totalCost: totalCost, totalCostNo: totalCostNo, wastage: wastage, selectedAbbrevArea: selectedAbbrevArea, selectedAbbrevTile: selectedAbbrevTile, selectedAbbrevPrice: selectedAbbrePrice)
                                 }
-                                NavigationLink(destination: historyList(historyManager: historyManager), isActive: $hist) {
+
                                                         button(icon: "square.and.arrow.down", text: "Save", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
                                                         {
                                                             let newEntry = history(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth)
-                                                            historyManager.historyEntries.append(newEntry)
+                                                            print("Data to be saved: \(newEntry)") 
+
+                                                                historyManager.historyEntries.append(newEntry)
                                                             showPopup = false
                                                         }
-                                                    }
+                                            
                             }.padding(.top,5)
                             
                             Spacer()
@@ -153,7 +155,11 @@ struct popupResult: View {
     }
 
 }
-
+func formattedCost(_ cost: Int) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    return formatter.string(from: NSNumber(value: cost)) ?? ""
+}
 
 private func convertToInches(value: Double, unit: String) -> Double {
     switch unit {

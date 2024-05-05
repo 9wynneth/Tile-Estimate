@@ -7,13 +7,23 @@
 
 import SwiftUI
 
-struct history: Identifiable {
-    let id = UUID()
-    let areaLength: String
-    let areaWidth: String
-    let tileLength: String
-    let tileWidth: String
-    var isSelected: Bool = false // Added property to track selection
+struct history: Identifiable, Hashable {
+    let id: String
+    var areaLength: String
+    var areaWidth: String
+    var tileLength: String
+    var tileWidth: String
+
+    // Add other properties as needed
+
+    init(areaLength: String, areaWidth: String, tileLength: String, tileWidth: String) {
+        self.id = "\(areaLength)-\(areaWidth)"
+        self.areaLength = areaLength
+        self.areaWidth = areaWidth
+        self.tileLength = tileLength
+        self.tileWidth = tileWidth
+
+    }
 }
 
 class HistoryManager: ObservableObject {

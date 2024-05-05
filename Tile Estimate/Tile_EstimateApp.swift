@@ -12,6 +12,7 @@ import SwiftData
 struct Tile_EstimateApp: App {
     @State private var hist = false
     @State private var isActive = false
+    var historyManager = HistoryManager()
 
     
     var sharedModelContainer: ModelContainer = {
@@ -32,6 +33,8 @@ struct Tile_EstimateApp: App {
                     if isActive {
                         ContentView(hist: $hist, isActive: $isActive)
                             .modelContainer(for: Item.self, inMemory: true)
+                            .environmentObject(historyManager) 
+
                     } else {
                         splashScreenView(isActive: $isActive)
                     }
