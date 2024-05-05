@@ -48,7 +48,7 @@ struct popupResult: View {
     }
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             HStack {
                 VStack {
                     VStack {
@@ -130,11 +130,13 @@ struct popupResult: View {
                                     shareButtonClicked(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesNeeded: Int(tilesNeeded), tilesNeededNo: Int(tilesNeededNo), boxesNeeded: boxesNeeded, boxesNeededNo: boxesNeededNo, totalCost: totalCost, totalCostNo: totalCostNo, wastage: wastage, selectedAbbrevArea: selectedAbbrevArea, selectedAbbrevTile: selectedAbbrevTile, selectedAbbrevPrice: selectedAbbrePrice)
                                 }
                                 NavigationLink(destination: historyList(historyManager: historyManager), isActive: $hist) {
-                                    button(icon: "square.and.arrow.down", text: "Save", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
-                                    {
-                                        saveButtonClicked() // Call saveButtonClicked function
-                                    }
-                                }
+                                                        button(icon: "square.and.arrow.down", text: "Save", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
+                                                        {
+                                                            let newEntry = history(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth)
+                                                            historyManager.historyEntries.append(newEntry)
+                                                            showPopup = false
+                                                        }
+                                                    }
                             }.padding(.top,5)
                             
                             Spacer()
@@ -147,15 +149,9 @@ struct popupResult: View {
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                 }
             }
-        }.background(.clear)
+//        }.background(.clear)
     }
-    func saveButtonClicked() {
-            historyManager.addEntry(entry: history(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth))
-            hist = true
-            showPopup.toggle()
-            showPopup = false
-            print("Save button clicked. hist is \(hist)")
-        }
+
 }
 
 

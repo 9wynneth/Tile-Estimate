@@ -7,19 +7,15 @@
 
 import SwiftUI
 
-struct history {
-    var areaLength: String
-    var areaWidth: String
-    var tileLength: String
-    var tileWidth: String
+struct history: Identifiable {
+    let id = UUID()
+    let areaLength: String
+    let areaWidth: String
+    let tileLength: String
+    let tileWidth: String
+    var isSelected: Bool = false // Added property to track selection
 }
 
 class HistoryManager: ObservableObject {
     @Published var historyEntries: [history] = []
-    
-    func addEntry(entry: history) {
-        historyEntries.append(entry)
-    }
-    
-    // Implement delete functionality if needed
 }

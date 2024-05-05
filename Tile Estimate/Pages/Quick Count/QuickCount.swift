@@ -95,7 +95,7 @@ struct QuickCount: View {
                                         }
                                 }
                                 .padding(.horizontal, 25)
-                                .padding(.top, 16)
+                                .padding(.top, 12)
                                 
                                 VStack (spacing: 0) {
                                     ZStack {
@@ -112,10 +112,10 @@ struct QuickCount: View {
                                             
                                         }
                                         .padding(.horizontal, 45)
-                                        .padding(.top, 12)
+                                        .padding(.top, 8)
                                         
                                     }
-                                    .padding(.top, 5)
+                                    .padding(.top, 2)
                                     .frame(alignment: .center)
                                     
                                     ZStack {

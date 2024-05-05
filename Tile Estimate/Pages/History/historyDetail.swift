@@ -9,14 +9,10 @@ import SwiftUI
 
 struct historyDetail: View {
     var historyEntry: history
-    
+
     var body: some View {
-        // Details view to display the full details of a history entry
-        VStack {
-            Text("Area Length: \(historyEntry.areaLength)")
-            Text("Area Width: \(historyEntry.areaWidth)")
-            // Add other properties as needed
-        }
+        // Detail view
+        Text("Details for \(historyEntry.areaLength) x \(historyEntry.areaWidth)")
     }
 }
 
