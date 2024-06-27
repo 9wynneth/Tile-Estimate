@@ -29,7 +29,7 @@ struct card: View {
             textBody10(text: label)
         }
         .frame(width: width, height: height)
-        .background(Color(hex: "#F2EEEB", transparency: 0.5))
+        .background(Color(hex: "Cream", transparency: 0.5))
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .padding(5)
     }

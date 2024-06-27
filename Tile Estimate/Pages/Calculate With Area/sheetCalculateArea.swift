@@ -21,11 +21,14 @@ struct sheetCalculateArea: View {
     @State private var selectedPrice = "IDR"
     
     
-    
-    
     @Binding var showPopup:Bool
     @State private var showResult = false
     @State private var alert = false
+    @State private var alertMissing = false
+    @State private var alertTitle2 = ""
+    @State private var alertDesc2 = ""
+
+
 
     
     
@@ -56,6 +59,24 @@ struct sheetCalculateArea: View {
                                 primaryActionTitle: "Clear"
                             ).cornerRadius(14)
                         }
+                        else if alertMissing {
+                            CustomAlert(
+                                title: alertTitle2,
+                                description: alertDesc2,
+                                
+                                primaryAction: {
+                                   
+                                    alertMissing = false
+                                    
+                                },
+                                primaryActionTitle: "Okay"
+                            ).cornerRadius(14)
+                            
+                            
+                        }
+                        
+                        
+                        
                     }.zIndex(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).ignoresSafeArea()
                     VStack {
                         if showResult {
@@ -216,6 +237,43 @@ struct sheetCalculateArea: View {
                                     VStack(spacing:8) {
                                         button(icon: "", text: "Calculate", width: 335, height: 49, font: 15, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20)
                                         {
+                                           
+                                            if area == ""{
+                                                alertTitle2 = "Your room area is missing"
+                                                alertDesc2 = "Please fill in the length of your room"
+                                                alertMissing = true
+                                            }
+                                            else if length == "" {
+                                                alertTitle2 = "Your tile length is missing"
+                                                alertDesc2 = "Please fill in the length of your tile"
+                                                alertMissing = true
+                                            }
+                                            else if width2 == "" {
+                                                alertTitle2 = "Your tile width is missing"
+                                                alertDesc2 = "Please fill in the width of your tile"
+                                                alertMissing = true
+                                            }
+                                            
+                                            else if tilesPerBox2 == "" {
+                                                alertTitle2 = "Your \"Tiles per box\" is missing"
+                                                alertDesc2 = "Please fill in the amount of tiles included in one box"
+                                                alertMissing = true
+                                            }
+                                            
+                                            else if pricePerBox2 == "" {
+                                                alertTitle2 = "The price is still missing"
+                                                alertDesc2 = "Please fill in the price of one box of tile"
+                                                alertMissing = true
+                                            }
+                                            
+                                            else if wastage2 == "" {
+                                                alertTitle2 = "The \"Wastage\" is still missing"
+                                                alertDesc2 = "Please fill in the wastage"
+                                                alertMissing = true
+                                            }
+                                            
+                                            
+                                            
                                             showResult = true
                                         }
                                         
@@ -241,7 +299,7 @@ struct sheetCalculateArea: View {
                 }
             }
         }.ignoresSafeArea()
-        .background(Color(hex: "F2EEEB", transparency: 1.0))
+        .background(Color(hex: "Cream", transparency: 1.0))
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }

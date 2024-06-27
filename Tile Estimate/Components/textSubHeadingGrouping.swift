@@ -17,7 +17,7 @@ struct textSubHeadingGrouping: View {
     var body: some View {
         Text(text)
             .font(.system(size: 13, weight: .regular))
-            .foregroundColor(Color(hex: "3C3C43", transparency: 0.6))
+            .foregroundColor(Color(hex: "6f6f75", transparency: 1.0))
             .textCase(.uppercase)
     }
 }

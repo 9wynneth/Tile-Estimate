@@ -1,10 +1,3 @@
-//
-//  pickerDropdown.swift
-//  Tile Estimate
-//
-//  Created by Gwynneth Isviandhy on 27/04/24.
-//
-
 import SwiftUI
 
 struct pickerDropdown: View {
@@ -15,11 +8,25 @@ struct pickerDropdown: View {
     let width: CGFloat
     let height: CGFloat
     let bgColor: String
-    let bgTransparency: Double
+    let bgTransparency: (light: Double, dark: Double)
     let fontColor: String
-    let fontTransparency: Double
+    let fontTransparency: (light: Double, dark: Double)
     let cornerRadius: CGFloat
-    @Binding var transfer : String
+    @Binding var transfer: String
+    
+    init(icon: String, items: [String], font: CGFloat, width: CGFloat, height: CGFloat, bgColor: String, bgTransparency: Any, fontColor: String, fontTransparency: Any, cornerRadius: CGFloat, transfer: Binding<String>) {
+        self.icon = icon
+        self.items = items
+        self.font = font
+        self.width = width
+        self.height = height
+        self.bgColor = bgColor
+        self.bgTransparency = parseTransparency(bgTransparency)
+        self.fontColor = fontColor
+        self.fontTransparency = parseTransparency(fontTransparency)
+        self.cornerRadius = cornerRadius
+        self._transfer = transfer
+    }
     
     var body: some View {
         VStack {
@@ -29,7 +36,6 @@ struct pickerDropdown: View {
                         selectedIndex = index
                         transfer = selectedAbbreviation
                     }) {
-                        
                         Text(items[index])
                     }
                 }
@@ -38,18 +44,17 @@ struct pickerDropdown: View {
                     Spacer()
                     Text(transfer.isEmpty ? selectedAbbreviation : transfer)
                         .font(Font.system(size: font))
-                        .foregroundColor(Color(hex: fontColor, transparency: fontTransparency))
+                        .foregroundColor(Color(hex: fontColor, transparency: currentTransparency(for: fontTransparency)))
                     Image(systemName: icon)
                         .font(.system(size: CGFloat(font), weight: .medium))
-                        .foregroundColor(Color(hex: fontColor, transparency: fontTransparency))
+                        .foregroundColor(Color(hex: fontColor, transparency: currentTransparency(for: fontTransparency)))
                     Spacer()
                 }
             }
             .frame(width: width, height: height)
-            .accentColor(Color(hex: fontColor, transparency: fontTransparency))
-            .background(Color(hex: bgColor, transparency: bgTransparency))
+            .accentColor(Color(hex: fontColor, transparency: currentTransparency(for: fontTransparency)))
+            .background(Color(hex: bgColor, transparency: currentTransparency(for: bgTransparency)))
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-            
         }
         .frame(alignment: .center)
     }
@@ -58,55 +63,71 @@ struct pickerDropdown: View {
         let selectedOption = items[selectedIndex]
         
         switch selectedOption {
-            case "meter":
-                transfer = "m"
-                return "m"
-            case "centimeter":
-                transfer = "cm"
-                return "cm"
-            case "feet":
-                transfer = "ft"
-                return "ft"
-            case "inch":
-                transfer = "in"
-                return "in"
-            case "Rupiah":
-                transfer = "IDR"
-                return "IDR"
-            case "US Dollar":
-                transfer = "USD"
-                return "USD"
-            case "Singaporean Dollar":
-                transfer = "SGD"
-                return "SGD"
-            case "Euro":
-                transfer = "EUR"
-                return "EUR"
-            case "square meter":
-                transfer = "m2"
-                return "m2"
-            case "square centimeter":
-                transfer = "cm2"
-                return "cm2"
-            case "square feet":
-                transfer = "ft2"
-                return "ft2"
-            case "square inch":
-                transfer = "in2"
-                return "in2"
-                
-            default:
-                transfer = selectedOption
-                return selectedOption
+        case "Rectangle":
+            transfer = "Rectangle"
+            return "Rectangle"
+        case "Circle":
+            transfer = "Circle"
+            return "Circle"
+        case "Triangle":
+            transfer = "Triangle"
+            return "Triangle"
+        case "meter":
+            transfer = "m"
+            return "m"
+        case "centimeter":
+            transfer = "cm"
+            return "cm"
+        case "feet":
+            transfer = "ft"
+            return "ft"
+        case "inch":
+            transfer = "in"
+            return "in"
+        case "Rupiah":
+            transfer = "IDR"
+            return "IDR"
+        case "US Dollar":
+            transfer = "USD"
+            return "USD"
+        case "Singaporean Dollar":
+            transfer = "SGD"
+            return "SGD"
+        case "Euro":
+            transfer = "EUR"
+            return "EUR"
+        case "square meter":
+            transfer = "m2"
+            return "m2"
+        case "square centimeter":
+            transfer = "cm2"
+            return "cm2"
+        case "square feet":
+            transfer = "ft2"
+            return "ft2"
+        case "square inch":
+            transfer = "in2"
+            return "in2"
+        default:
+            transfer = selectedOption
+            return selectedOption
         }
-
     }
     
-    
-    
-    
+    func currentTransparency(for transparency: (light: Double, dark: Double)) -> Double {
+        return UITraitCollection.current.userInterfaceStyle == .dark ? transparency.dark : transparency.light
+    }
 }
 
-//#Preview {
-//    pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","c"], width: 57, height: 23, font: 12, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: "cm")
-//}
+func parseTransparency(_ transparency: Any) -> (light: Double, dark: Double) {
+    if let transparency = transparency as? Double {
+        return (light: transparency, dark: transparency)
+    } else if let transparency = transparency as? String {
+        let values = transparency.split(separator: ":").map { Double($0.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 1.0 }
+        let lightTransparency = values.first ?? 1.0
+        let darkTransparency = values.count > 1 ? values[1] : lightTransparency
+        return (light: lightTransparency, dark: darkTransparency)
+    } else {
+        return (light: 1.0, dark: 1.0)
+    }
+}

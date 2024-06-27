@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct CustomAlert <Content: View>: View {
- 
-    @Environment(\.colorScheme) var colorScheme
-
     let title: String
     let description: String
+
+    @State private var textFieldValue = ""
 
     var cancelAction: (() -> Void)?
     var cancelActionTitle: String?
@@ -51,9 +50,9 @@ struct CustomAlert <Content: View>: View {
                     .multilineTextAlignment(.center)
                     .padding([.bottom, .trailing, .leading])
 
-                customContent
+//                customContent
 
-                Divider()
+//                Divider()
 
                 HStack {
                     if let cancelAction, let cancelActionTitle {
@@ -86,30 +85,28 @@ struct CustomAlert <Content: View>: View {
         .zIndex(1)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(
-            colorScheme == .dark
-            ? Color(red: 0, green: 0, blue: 0, opacity: 0.4)
-            : Color(red: 1, green: 1, blue: 1, opacity: 0.4)
+            Color(red: 0, green: 0, blue: 0, opacity: 0.4)
         )
     }
 }
 
-#Preview {
-    CustomAlert(
-        title: "Are you sure?",
-        description: "By clicking 'Clear', all data you have entered will be permanently deleted.",
-        cancelAction: {
-            // Cancel action here
-            
-        },
-        cancelActionTitle: "Cancel",
-        primaryAction: {
-            // Primary action here
-            
-        },
-        primaryActionTitle: "Clear"
-//        ,
-//        customContent: Text("")
-//            .padding([.trailing, .leading, .bottom])
-        
-    ).cornerRadius(14)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomAlert(
+            title: "Are you sure?",
+            description: "By clicking 'Clear', all data you have entered will be permanently deleted.",
+            cancelAction: {
+                // Cancel action here
+                
+            },
+            cancelActionTitle: "Cancel",
+            primaryAction: {
+                // Primary action here
+                
+            },
+            primaryActionTitle: "Clear",
+            customContent: Text("")
+                .padding([.trailing, .leading, .bottom])
+        ).cornerRadius(14)
+    }
 }

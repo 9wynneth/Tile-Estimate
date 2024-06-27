@@ -24,7 +24,7 @@ struct popupResult: View {
     @Binding var selectedAbbrevTile: String
     
     @Binding var showPopup: Bool
-    @EnvironmentObject var historyManager: HistoryManager // Use environment object
+    @EnvironmentObject var historyManager: HistoryManager
     @State public var hist = false
     
     @Environment(\.colorScheme) var colorScheme
@@ -53,6 +53,7 @@ struct popupResult: View {
                 VStack {
                     VStack {
                         VStack(spacing:0) {
+                            
                             HStack {
                                 Spacer()
                                 button(icon: "", text:"X", width: 30, height:30, font: 15, bgColor: "946F5A", bgTransparency: 0.5 , fontColor:"3D3D3D", fontTransparency: 0.7, cornerRadius: 20)
@@ -60,27 +61,14 @@ struct popupResult: View {
                                     showPopup.toggle()
                                 }
                             }.padding(.horizontal,4).padding(.top,8).padding(.trailing,8)
-                            VStack(spacing: 8) {
+                            VStack{
                                 Image("Logo")
                                     .resizable()
                                     .scaledToFit()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 120, height: 70)
                                 
-                                Text("TILE ESTIMATE")
-                                    .font(.custom("Inter Extra Bold", size: 20))
-                                    .tracking(3.96)
-                                    .lineSpacing(20)
-                                    .transition(.move(edge: .leading))
-                                
-                            }
-                            Text("COUNT TILES, PLAN SMARTER")
-                                .font(.custom("Inter Extra Bold", size: 12))
-                                .foregroundColor(Color(#colorLiteral(red: 0.58, green: 0.44, blue: 0.35, alpha: 1)))
-                                .tracking(3.96)
-                                .lineSpacing(20)
-                                .transition(.move(edge: .leading))
-                                .padding(.top, 0).padding(.bottom,4)
+                            }.padding(.bottom,8)
                             
                             let tilesNeeded = calculateTilesNeededInches(areaLength: Double(areaLength) ?? 0,
                                                                          areaWidth: Double(areaWidth) ?? 0,
@@ -132,10 +120,8 @@ struct popupResult: View {
 
                                                         button(icon: "square.and.arrow.down", text: "Save", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
                                                         {
-                                                            let newEntry = history(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth)
-                                                            print("Data to be saved: \(newEntry)") 
-
-                                                                historyManager.historyEntries.append(newEntry)
+                                                            let newEntry = history(area: formattedAreaRoom, tileLength: tileLength, tileWidth: tileWidth, tilesNeeded: String(tilesNeeded), boxNeeded: String(boxesNeeded), cost: String(formattedCost(totalCost)), tilesNeededNo: String(tilesNeededNo), boxNeededNo: String(boxesNeededNo), costNo: String(formattedCost(totalCostNo)), selectedArea: selectedAbbrevArea, selectedTile: selectedAbbrevTile, selectedCost: selectedAbbrePrice, wastage: wastage, selectedShape: selectedShape)
+                                                            historyManager.historyEntries.append(newEntry)
                                                             showPopup = false
                                                         }
                                             
@@ -146,7 +132,7 @@ struct popupResult: View {
                             Spacer()
                         }.padding(.top,4)
                     }
-                    .frame(width: 332, height: 690, alignment: .center)
+                    .frame(width: 332, height: 620, alignment: .center)
                     .background(Color(hex: "C1ADA0", transparency: 0.95))
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                 }

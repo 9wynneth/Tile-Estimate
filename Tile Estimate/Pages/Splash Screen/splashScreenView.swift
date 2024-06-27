@@ -25,8 +25,9 @@ struct splashScreenView: View {
                     VStack {
                         GeometryReader { geometry in
                             ZStack {
-                                Color(hex: "F2EEEB", transparency: 1.0)
-                                    .ignoresSafeArea()
+                                Color("Cream").ignoresSafeArea()
+//                                Color(hex: "F2EEEB", transparency: 1.0)
+//                                    .ignoresSafeArea()
                                 VStack {
                                     VStack(spacing: 20) {
                                         Image("Logo")
@@ -35,7 +36,7 @@ struct splashScreenView: View {
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geometry.size.width * 0.5)
                                             .opacity(logoOpacity)
-                                            .animation(.easeInOut(duration: 1.0).delay(0)) // Logo animation
+                                            .animation(.easeInOut(duration: 1.0).delay(0)) 
                                         
                                         Text("TILE ESTIMATE")
                                             .font(.custom("Inter Extra Bold", size: 24))
@@ -66,8 +67,8 @@ struct splashScreenView: View {
                             }
                         }
                         .navigationTitle("")
-                        .navigationBarHidden(true) // Hide navigation bar
-                        .navigationBarBackButtonHidden(true) // Hide back button
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
                     }
                 }
             }

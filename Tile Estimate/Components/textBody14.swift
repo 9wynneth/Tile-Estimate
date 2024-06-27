@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct textBody14: View {
+    let text: String
+    
+    init(text: String) {
+        self.text = text
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(text)
+          .font(.custom("Inter Bold", size: 14))
+          .fontWeight(.bold)
+          .lineSpacing(20)
     }
 }
 
-#Preview {
-    textBody14()
-}

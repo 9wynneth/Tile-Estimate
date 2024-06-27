@@ -21,9 +21,14 @@ struct QuickCount: View {
     @State private var selectedAbrePrice=""
     @State private var showSheetArea = false
     @State private var alert = false
-    
-    
+    @State private var alertIsRequired = false
 
+    @State private var alertTitle = ""
+    @State private var alertDescription = ""
+    @State private var primaryButtonText = ""
+
+
+    
     @State private var selectedShape = ""
     
     @State private var selectedAbreLengthArea = ""
@@ -32,8 +37,8 @@ struct QuickCount: View {
     @State private var selectedAbreWidthTile = ""
     
     var body: some View {
-        @EnvironmentObject var historyManager: HistoryManager // Use environment object instead of passing directly
-
+        @EnvironmentObject var historyManager: HistoryManager
+        
         GeometryReader { geometry in
             ZStack {
                 VStack {
@@ -61,12 +66,22 @@ struct QuickCount: View {
                             primaryActionTitle: "Clear"
                         ).cornerRadius(14)
                     }
-
+                    else if alertIsRequired {
+                        CustomAlert(
+                            title: alertTitle,
+                            description: alertDescription,
+                            primaryAction: {
+                                alertIsRequired = false
+                            },
+                            primaryActionTitle: "Okay"
+                        ).cornerRadius(14)
+                    }
+                    
                 }.zIndex(1.0).ignoresSafeArea()
                 VStack {
                     if showPopup {
                         popupResult(areaLength: areaLength, areaWidth: areaWidth, tileLength: tileLength, tileWidth: tileWidth, tilesPerBox: tilesPerBox, pricePerBox: pricePerBox, wastage: wastage, areaUnitIndex: areaUnitIndex, selectedShape: $selectedShape, selectedAbbrePrice: $selectedAbrePrice, selectedAbbrevArea: $selectedAbreLengthArea, selectedAbbrevTile: $selectedAbreLengthTile, showPopup: $showPopup, historyManager: _historyManager)
-                            .padding(.top, 90)
+                            .padding(.top, 80)
                     }
                 }.zIndex(1.0)
                 NavigationView {
@@ -100,7 +115,7 @@ struct QuickCount: View {
                                 VStack (spacing: 0) {
                                     ZStack {
                                         UnevenRoundedRectangle(topLeadingRadius: 10, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 10, style: .continuous)
-                                            .fill(Color(hex: "ffffff", transparency: 0.7))
+                                            .fill(Color(hex: "White", transparency: 0.7))
                                             .frame(width: .infinity, height: 44)
                                             .padding(.horizontal, 25)
                                             .padding(.top, 4)
@@ -108,7 +123,7 @@ struct QuickCount: View {
                                         HStack {
                                             textBody17(text: "Shape")
                                             Spacer()
-                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["Rectangle", "Circle","Triangle"], font: 12, width: 140, height: 23, bgColor: "946F5A", bgTransparency: 0.1, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedShape)
+                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["Rectangle", "Circle","Triangle"], font: 12, width: 150, height: 23, bgColor: "946F5A", bgTransparency: "0.1:0.8", fontColor: "textPicker", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedShape)
                                             
                                         }
                                         .padding(.horizontal, 45)
@@ -120,18 +135,20 @@ struct QuickCount: View {
                                     
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 0)
-                                            .fill(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.699999988079071)))
+                                            .fill(Color(hex: "White", transparency: 0.7))
                                             .frame(width: .infinity, height: 44)
                                             .padding(.horizontal, 25)
                                         
                                         HStack {
                                             textBody17(text: "Length")
+                                               
+
                                             Spacer()
                                             
                                             textfieldInput(text: $areaLength, placeholder: "3", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                                 .keyboardType(.numberPad)
                                             
-                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreLengthArea)
+                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: "1.0:0.8", fontColor: "textPicker", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreLengthArea)
                                                 .onChange(of: selectedAbreLengthArea) { newValue in
                                                     selectedAbreWidthArea = newValue
                                                 }
@@ -144,7 +161,7 @@ struct QuickCount: View {
                                     
                                     ZStack {
                                         UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 0, style: .continuous)
-                                            .fill(Color(hex: "ffffff", transparency: 0.7))
+                                            .fill(Color(hex: "White", transparency: 0.7))
                                             .frame(width: .infinity, height: 44)
                                             .padding(.horizontal, 25)
                                         
@@ -163,7 +180,7 @@ struct QuickCount: View {
                                             
                                             textfieldInput(text:$areaWidth, placeholder: "3", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                                 .keyboardType(.numberPad)
-                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreWidthArea)
+                                            pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: "1.0:0.8", fontColor: "textPicker", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreWidthArea)
                                                 .onChange(of: selectedAbreWidthArea) { newValue in
                                                     selectedAbreLengthArea = newValue
                                                 }
@@ -184,7 +201,7 @@ struct QuickCount: View {
                                     VStack (spacing: 0) {
                                         ZStack {
                                             UnevenRoundedRectangle(topLeadingRadius: 10, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 10, style: .continuous)
-                                                .fill(Color(hex: "ffffff", transparency: 0.7))
+                                                .fill(Color(hex: "White", transparency: 0.7))
                                                 .frame(width: .infinity, height: 44)
                                                 .padding(.horizontal, 25)
                                                 .padding(.top, 4)
@@ -195,7 +212,7 @@ struct QuickCount: View {
                                                 textfieldInput(text:$tileLength, placeholder: "40", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                                     .keyboardType(.numberPad)
                                                 
-                                                pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreLengthTile)
+                                                pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: "1.0:0.8", fontColor: "textPicker", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreLengthTile)
                                                     .onChange(of: selectedAbreLengthTile) { newValue in
                                                         selectedAbreWidthTile = newValue
                                                     }
@@ -209,7 +226,7 @@ struct QuickCount: View {
                                         
                                         ZStack {
                                             UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 0, style: .continuous)
-                                                .fill(Color(hex: "ffffff", transparency: 0.7))
+                                                .fill(Color(hex: "White", transparency: 0.7))
                                                 .frame(width: .infinity, height: 44)
                                                 .padding(.horizontal, 25)
                                             
@@ -220,7 +237,7 @@ struct QuickCount: View {
                                                 textfieldInput(text:$tileWidth ,placeholder: "40", font: 17, width: 70, height: 32, cornerRadius: 8, satuan: "")
                                                     .keyboardType(.numberPad)
                                                 
-                                                pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreWidthTile)
+                                                pickerDropdown(icon: "chevron.up.chevron.down", items: ["meter", "centimeter","feet", "inch"], font: 12, width: 57, height: 23, bgColor: "c1ada0", bgTransparency: "1.0:0.8", fontColor: "textPicker", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbreWidthTile)
                                                     .onChange(of: selectedAbreWidthTile) { newValue in
                                                         selectedAbreLengthTile = newValue
                                                     }
@@ -239,7 +256,7 @@ struct QuickCount: View {
                                         VStack(spacing: 8) {
                                             ZStack {
                                                 UnevenRoundedRectangle(topLeadingRadius: 10, bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 10, style: .continuous)
-                                                    .fill(Color(hex: "ffffff", transparency: 0.7))
+                                                    .fill(Color(hex: "White", transparency: 0.7))
                                                     .frame(width: .infinity, height: 44)
                                                     .padding(.horizontal, 25)
                                                 
@@ -255,7 +272,7 @@ struct QuickCount: View {
                                             
                                             ZStack {
                                                 UnevenRoundedRectangle(topLeadingRadius: 10, bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 10, style: .continuous)
-                                                    .fill(Color(hex: "ffffff", transparency: 0.7))
+                                                    .fill(Color(hex: "White", transparency: 0.7))
                                                     .frame(width: .infinity, height: 44)
                                                     .padding(.horizontal, 25)
                                                 
@@ -263,7 +280,7 @@ struct QuickCount: View {
                                                     textBody17(text: "Price")
                                                     Spacer()
                                                     
-                                                    pickerDropdown(icon: "chevron.up.chevron.down", items: ["IDR", "EUR","SGD", "USD"], font: 12, width: 65, height: 23, bgColor: "c1ada0", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbrePrice)
+                                                    pickerDropdown(icon: "chevron.up.chevron.down", items: ["IDR", "EUR","SGD", "USD"], font: 12, width: 65, height: 23, bgColor: "c1ada0", bgTransparency: "1.0:0.8", fontColor: "textPicker", fontTransparency: 0.6, cornerRadius: 20, transfer: $selectedAbrePrice)
                                                     
                                                     textfieldInput(text:$pricePerBox , placeholder: "60000", font: 17, width: 130, height: 32, cornerRadius: 8, satuan: "/ box")
                                                         .keyboardType(.numberPad)
@@ -274,7 +291,7 @@ struct QuickCount: View {
                                             
                                             ZStack {
                                                 UnevenRoundedRectangle(topLeadingRadius: 10, bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 10, style: .continuous)
-                                                    .fill(Color(hex: "ffffff", transparency: 0.7))
+                                                    .fill(Color(hex: "White", transparency: 0.7))
                                                     .frame(width: .infinity, height: 44)
                                                     .padding(.horizontal, 25)
                                                 
@@ -298,26 +315,65 @@ struct QuickCount: View {
                                             }
                                             
                                             button(icon: "", text: "Calculate", width: 150, height: 49, font: 15, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20) {
-                                                showPopup.toggle()
+                                                
+                                                if areaLength == ""{
+                                                    alertTitle = "Your room length is missing"
+                                                    alertDescription = "Please fill in the length of your room"
+                                                    alertIsRequired = true
+                                                }
+                                                else if areaWidth == "" {
+                                                    alertTitle = "Your room width is missing"
+                                                    alertDescription = "Please fill in the width of your room"
+                                                    alertIsRequired = true
+                                                }
+                                                else if tileLength == "" {
+                                                    alertTitle = "Your tile length is missing"
+                                                    alertDescription = "Please fill in the length of your tile"
+                                                    alertIsRequired = true
+                                                }
+                                                else if tileWidth == "" {
+                                                    alertTitle = "Your tile width is missing"
+                                                    alertDescription = "Please fill in the width of your tile"
+                                                    alertIsRequired = true
+                                                }
+                                                else if tilesPerBox == "" {
+                                                    alertTitle = "Your \"Tiles per box\" is missing"
+                                                    alertDescription = "Please fill in the amount of tiles included in one box"
+                                                    alertIsRequired = true
+                                                }
+                                                
+                                                else if pricePerBox == "" {
+                                                    alertTitle = "The price is still missing"
+                                                    alertDescription = "Please fill in the price of one box of tile"
+                                                    alertIsRequired = true
+                                                }
+                                                
+                                                else if wastage == "" {
+                                                    alertTitle = "The \"Wastage\" is still missing"
+                                                    alertDescription = "Please fill in the wastage"
+                                                    alertIsRequired = true
+                                                }
+                                                else {
+                                                    showPopup.toggle()
+                                                }
                                                 
                                             }
-
-                                            
                                         }
                                         .padding(.top, 32).padding(.horizontal,25)
                                         
                                     }
                                     Spacer()
                                 }
-                    
+                                
                                 Spacer()
                                     .frame(minHeight: 0, maxHeight: .infinity)
                             }
                         }.modifier(KeyboardAwareModifier())
-
+                        
                         
                     }
-                    .background(Color(hex: "F2EEEB", transparency: 1.0))
+                    .background(Color("Cream")
+                    )
                     .ignoresSafeArea()
                     .zIndex(0)
                     .onTapGesture {
@@ -329,7 +385,7 @@ struct QuickCount: View {
                     }
                     
                 }
-
+                
             }
         }.ignoresSafeArea()
     }

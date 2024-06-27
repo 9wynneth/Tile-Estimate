@@ -9,8 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
     @Binding var hist: Bool
     @Binding var isActive: Bool
     @StateObject private var historyManager = HistoryManager()
@@ -23,16 +21,14 @@ struct ContentView: View {
                 .tabItem {
                     Label("Quick Count", systemImage: "wand.and.stars.inverse")
                 }
-                .environmentObject(HistoryManager())
+                .environmentObject(historyManager)
             
             historyList()
-                .environmentObject(historyManager) 
+                .environmentObject(historyManager)
                 .tabItem {
                     Label("History", systemImage: "list.clipboard")
                 }
         }.accentColor(Color(hex: "946F5A", transparency: 1.0))
-        
-
     }
     
 }

@@ -10,7 +10,7 @@ struct splashScreenPage: View {
         NavigationView {
             GeometryReader { geometry in
                 ZStack {
-                    Color(hex: "F2EEEB", transparency: 1.0)
+                    Color(hex: "Cream", transparency: 1.0)
                         .ignoresSafeArea()
                     VStack {
                         VStack(spacing: 20) {

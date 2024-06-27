@@ -21,6 +21,8 @@ struct popupresultArea: View {
     @Binding var selectedAbbrevTile: String
     
     @Binding var showResult: Bool
+    @EnvironmentObject var historyManager: HistoryManager
+
     
     init(area: String, tileLength2: String, tileWidth2: String, tilesPerBox2: String, pricePerBox2: String, wastage2: String, selectedAbbrePrice: Binding<String>, selectedAbbrevArea: Binding<String> = .constant("m2"), selectedAbbrevTile: Binding<String>, showResult: Binding<Bool>) {
             self.area = area
@@ -54,20 +56,8 @@ struct popupresultArea: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 120, height: 70)
                     
-                    Text("TILE ESTIMATE")
-                        .font(.custom("Inter Extra Bold", size: 20))
-                        .tracking(3.96)
-                        .lineSpacing(20)
-                        .transition(.move(edge: .leading))
-                    
-                }
-                Text("COUNT TILES, PLAN SMARTER")
-                    .font(.custom("Inter Extra Bold", size: 12))
-                    .foregroundColor(Color(#colorLiteral(red: 0.58, green: 0.44, blue: 0.35, alpha: 1)))
-                    .tracking(3.96)
-                    .lineSpacing(20)
-                    .transition(.move(edge: .leading))
-                    .padding(.top, 0).padding(.bottom,4)
+                }.padding(.bottom,8)
+
                 
                 let tilesNeeded2 = calculateTilesNeededInches(area: Double(area) ?? 0,
                                                              tileLength: Double(tileLength2) ?? 0,
@@ -99,7 +89,7 @@ struct popupresultArea: View {
                     card(result: "\(boxesNeeded2)", label: "Box Needed", width: 90, height: 75, cornerRadius: 15)
                 }
                 HStack {
-                    card(result: "\(selectedAbbrePrice). \(totalCost)", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
+                    card(result: "\(selectedAbbrePrice). \(formattedCost2(totalCost))", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
                 }
                 textSubHeadingGrouping(text: "if not with wastage").padding(.top,8).padding(.leading,-100)
                 HStack(spacing:20) {
@@ -107,14 +97,19 @@ struct popupresultArea: View {
                     card(result: "\(boxesNeededNo)", label: "Box Needed", width: 90, height: 75, cornerRadius: 15)
                 }
                 HStack {
-                    card(result: "\(selectedAbbrePrice). \(totalCostNo)", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
+                    card(result: "\(selectedAbbrePrice). \(formattedCost2(totalCostNo))", label: "Cost Estimated", width: 211, height: 75, cornerRadius: 15)
                 }
                 HStack {
                     button(icon: "square.and.arrow.up", text: "Share", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
                     {
                         shareButtonClicked2(area: area, tileLength: tileLength2, tileWidth: tileWidth2, tilesNeeded2: Int(tilesNeeded2), tilesNeededNo: Int(tilesNeededNo), boxesNeeded2: Int(boxesNeeded2), boxesNeededNo: Int(boxesNeededNo), totalCost: totalCost, totalCostNo: totalCostNo, wastage: wastage2, selectedAbbrevArea: selectedAbbrevArea, selectedAbbrevTile: selectedAbbrevTile, selectedAbbrevPrice: selectedAbbrePrice)
                     }
-                    button(icon: "square.and.arrow.down", text: "Save", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20)
+                    button(icon: "square.and.arrow.down", text: "Save", width: 116, height: 44, font: 12, bgColor: "946F5A", bgTransparency: 0.5, fontColor: "4a382e", fontTransparency: 1.0, cornerRadius: 20){
+                        let newEntry = history(area: area, tileLength: tileLength2, tileWidth: tileWidth2, tilesNeeded: String(tilesNeeded2), boxNeeded: String(boxesNeeded2), cost: String(formattedCost(totalCost)), tilesNeededNo: String(tilesNeededNo), boxNeededNo: String(boxesNeededNo), costNo: String(formattedCost(totalCostNo)), selectedArea: selectedAbbrevArea, selectedTile: selectedAbbrevTile, selectedCost: selectedAbbrePrice, wastage: wastage2, selectedShape: "")
+                        historyManager.historyEntries.append(newEntry)
+                        showResult.toggle()
+                        
+                    }
                 }.padding(.top,8)
                 Spacer()
                 
@@ -122,7 +117,7 @@ struct popupresultArea: View {
             }.padding(.top,4)
         }
         
-        .frame(width: 332, height: 690)
+        .frame(width: 332, height: 620)
         .background(Color(hex: "C1ADA0", transparency: 0.95))
         .clipShape(RoundedRectangle(cornerRadius: 30))
         .onAppear {
@@ -140,6 +135,12 @@ struct popupresultArea: View {
         
     }
 }
+func formattedCost2(_ cost: Int) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    return formatter.string(from: NSNumber(value: cost)) ?? ""
+}
+
 
 private func convertToInches(value: Double, unit: String) -> Double {
     switch unit {
