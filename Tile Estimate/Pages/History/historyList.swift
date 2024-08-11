@@ -135,9 +135,9 @@ struct historyList: View {
 
     
     private func calculateSumTotal() {
-        let reversedEntries = Array(historyManager.historyEntries.reversed())
         let selectedHistoryEntries = selectedIndices.compactMap { index in
-            index < reversedEntries.count ? reversedEntries[index] : nil
+            let adjustedIndex = historyManager.historyEntries.count - 1 - index
+            return adjustedIndex < historyManager.historyEntries.count ? historyManager.historyEntries[adjustedIndex] : nil
         }
 
         let totalTilesNeeded = selectedHistoryEntries.reduce(0) { $0 + (Int($1.tilesNeeded) ?? 0) }
@@ -150,6 +150,7 @@ struct historyList: View {
         sumTotalData = (totalTilesNeeded, totalBoxNeeded, formattedTotalCost, selectedCurrency)
         showSumTotalAlert = true
     }
+
 
     private func removeDecimal(_ cost: String) -> Int {
         return Int(cost.replacingOccurrences(of: ".", with: "")) ?? 0
@@ -227,7 +228,10 @@ struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         let historyManager = HistoryManager()
         historyManager.historyEntries = [
-            history(area: "50", tileLength: "23", tileWidth: "12", tilesNeeded: "222", boxNeeded: "5", cost: "100", tilesNeededNo: "123", boxNeededNo: "3", costNo: "90", selectedArea: "m", selectedTile: "cm", selectedCost: "SGD", wastage: "50", selectedShape: "Triangle")
+            history(area: "50", tileLength: "23", tileWidth: "12", tilesNeeded: "100", boxNeeded: "5", cost: "100", tilesNeededNo: "123", boxNeededNo: "3", costNo: "90", selectedArea: "m", selectedTile: "cm", selectedCost: "SGD", wastage: "50", selectedShape: "Triangle"),
+                history(area: "50", tileLength: "23", tileWidth: "12", tilesNeeded: "1000", boxNeeded: "5", cost: "100", tilesNeededNo: "123", boxNeededNo: "3", costNo: "90", selectedArea: "m", selectedTile: "cm", selectedCost: "SGD", wastage: "50", selectedShape: "Triangle"),
+            history(area: "50", tileLength: "23", tileWidth: "12", tilesNeeded: "50", boxNeeded: "5", cost: "100", tilesNeededNo: "123", boxNeededNo: "3", costNo: "90", selectedArea: "m", selectedTile: "cm", selectedCost: "SGD", wastage: "50", selectedShape: "Triangle")
+            
         ]
         
         return historyList().environmentObject(historyManager)

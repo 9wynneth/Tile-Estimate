@@ -68,5 +68,5 @@ struct button: View {
 }
 
 #Preview {
-    button(icon: "chevron.up.chevron.down", text:"m", width: 57, height:23, font: 12, bgColor: "#c1ada0", bgTransparency: 1.0 , fontColor:"3C3C43", fontTransparency: 0.6, cornerRadius: 20)
+    button(icon: "chevron.up.chevron.down", text:"cm", width: 57, height:23, font: 12, bgColor: "#c1ada0", bgTransparency: 1.0 , fontColor:"3C3C43", fontTransparency: 0.6, cornerRadius: 20)
 }

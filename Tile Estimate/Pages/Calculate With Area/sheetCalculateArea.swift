@@ -272,9 +272,10 @@ struct sheetCalculateArea: View {
                                                 alertMissing = true
                                             }
                                             
-                                            
-                                            
-                                            showResult = true
+                                            else {
+                                                
+                                                showResult = true
+                                            }
                                         }
                                         
                                         button(icon: "", text: "Clear All", width: 335, height: 49, font: 15, bgColor: "ded4cd", bgTransparency: 1.0, fontColor: "3C3C43", fontTransparency: 0.6, cornerRadius: 20){
